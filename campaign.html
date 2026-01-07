@@ -1,0 +1,523 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Campaign Details - MpaMpe</title>
+    
+    <!-- favicons Icons -->
+    <link rel="apple-touch-icon" sizes="180x180" href="images/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="images/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="images/favicon-16x16.png">
+    
+    <!-- fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@400..700&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/font-awesome-all.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/responsive.css">
+    
+    <style>
+        .campaign-detail {
+            padding: 100px 0 80px;
+            background: #f8f9fa;
+        }
+        
+        .campaign-hero {
+            background: white;
+            border-radius: 20px;
+            overflow: hidden;
+            margin-bottom: 40px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+        }
+        
+        .campaign-image-container {
+            position: relative;
+            height: 500px;
+            overflow: hidden;
+        }
+        
+        .campaign-image-container img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        .campaign-status-badge {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: linear-gradient(135deg, #ff6600, #ffa415);
+            color: white;
+            padding: 10px 20px;
+            border-radius: 25px;
+            font-weight: 600;
+            font-size: 14px;
+        }
+        
+        .campaign-content {
+            padding: 40px;
+        }
+        
+        .campaign-category {
+            color: #267369;
+            font-weight: 600;
+            font-size: 14px;
+            text-transform: uppercase;
+            margin-bottom: 15px;
+        }
+        
+        .campaign-title {
+            font-size: 36px;
+            color: #267369;
+            margin-bottom: 20px;
+            font-weight: 700;
+        }
+        
+        .campaign-meta {
+            display: flex;
+            gap: 30px;
+            margin-bottom: 30px;
+            flex-wrap: wrap;
+        }
+        
+        .meta-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            color: #666;
+        }
+        
+        .meta-item i {
+            color: #ff6600;
+        }
+        
+        .campaign-progress {
+            background: #f0f0f0;
+            border-radius: 10px;
+            padding: 30px;
+            margin-bottom: 30px;
+        }
+        
+        .progress-stats {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 15px;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+        
+        .stat-item h3 {
+            font-size: 32px;
+            color: #ff6600;
+            margin-bottom: 5px;
+            font-weight: 700;
+        }
+        
+        .stat-item p {
+            color: #666;
+            font-size: 14px;
+        }
+        
+        .progress-bar-container {
+            height: 20px;
+            background: #ddd;
+            border-radius: 10px;
+            overflow: hidden;
+            margin-bottom: 10px;
+        }
+        
+        .progress-bar-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #ff6600, #ffa415);
+            transition: width 0.5s ease;
+        }
+        
+        .progress-percentage {
+            text-align: right;
+            color: #267369;
+            font-weight: 600;
+            font-size: 18px;
+        }
+        
+        .btn-donate-now {
+            background: linear-gradient(135deg, #ff6600, #ffa415);
+            color: white;
+            padding: 15px 40px;
+            border: none;
+            border-radius: 10px;
+            font-size: 18px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            width: 100%;
+            margin-top: 20px;
+        }
+        
+        .btn-donate-now:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(255, 102, 0, 0.3);
+        }
+        
+        .campaign-story {
+            background: white;
+            border-radius: 20px;
+            padding: 40px;
+            margin-bottom: 40px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+        }
+        
+        .campaign-story h2 {
+            color: #267369;
+            margin-bottom: 20px;
+            font-size: 28px;
+        }
+        
+        .campaign-story p {
+            color: #666;
+            line-height: 1.8;
+            font-size: 16px;
+            margin-bottom: 15px;
+        }
+        
+        .donors-section {
+            background: white;
+            border-radius: 20px;
+            padding: 40px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+        }
+        
+        .donors-section h2 {
+            color: #267369;
+            margin-bottom: 30px;
+            font-size: 28px;
+        }
+        
+        .donor-card {
+            border-bottom: 1px solid #e0e0e0;
+            padding: 20px 0;
+        }
+        
+        .donor-card:last-child {
+            border-bottom: none;
+        }
+        
+        .donor-info {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .donor-name {
+            font-weight: 600;
+            color: #333;
+            font-size: 16px;
+        }
+        
+        .donor-amount {
+            color: #ff6600;
+            font-weight: 700;
+            font-size: 18px;
+        }
+        
+        .donor-message {
+            color: #666;
+            font-size: 14px;
+            margin-top: 10px;
+            font-style: italic;
+        }
+        
+        .donor-date {
+            color: #999;
+            font-size: 12px;
+            margin-top: 5px;
+        }
+        
+        .share-buttons {
+            display: flex;
+            gap: 10px;
+            margin-top: 20px;
+        }
+        
+        .btn-share {
+            padding: 10px 20px;
+            border: 2px solid #e0e0e0;
+            background: white;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .btn-share:hover {
+            border-color: #ff6600;
+            color: #ff6600;
+        }
+    </style>
+</head>
+
+<body class="custom-cursor">
+    <div class="custom-cursor__cursor"></div>
+    <div class="custom-cursor__cursor-two"></div>
+    
+    <!-- Navigation (copy from index.html) -->
+    <nav class="main-menu">
+        <div class="container">
+            <div class="main-menu__inner">
+                <div class="main-menu__logo">
+                    <a href="index.html">
+                        <img src="images/logo.png" alt="MpaMpe" width="150">
+                    </a>
+                </div>
+                <div class="main-menu__nav">
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="campaigns.html">Campaigns</a></li>
+                        <li><a href="about.html">About</a></li>
+                        <li><a href="blog.html">Blog</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="main-menu__right">
+                    <a href="#" class="btn-start-campaign" data-auth="signin">Start Campaign</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+    
+    <!-- Campaign Detail Section -->
+    <section class="campaign-detail">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8">
+                    <div class="campaign-hero">
+                        <div class="campaign-image-container">
+                            <img id="campaign-image" src="" alt="">
+                            <div class="campaign-status-badge" id="campaign-status"></div>
+                        </div>
+                        <div class="campaign-content">
+                            <div class="campaign-category" id="campaign-category"></div>
+                            <h1 class="campaign-title" id="campaign-title"></h1>
+                            <div class="campaign-meta">
+                                <div class="meta-item">
+                                    <i class="fas fa-user"></i>
+                                    <span id="campaign-creator"></span>
+                                </div>
+                                <div class="meta-item">
+                                    <i class="fas fa-calendar"></i>
+                                    <span id="campaign-date"></span>
+                                </div>
+                                <div class="meta-item">
+                                    <i class="fas fa-eye"></i>
+                                    <span id="campaign-views"></span> views
+                                </div>
+                            </div>
+                            
+                            <div class="share-buttons">
+                                <button class="btn-share" onclick="shareOnTwitter()">
+                                    <i class="fab fa-twitter"></i> Share on X
+                                </button>
+                                <button class="btn-share" onclick="shareOnLinkedIn()">
+                                    <i class="fab fa-linkedin"></i> Share on LinkedIn
+                                </button>
+                                <button class="btn-share" onclick="copyURL()">
+                                    <i class="fas fa-link"></i> Copy Link
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="campaign-story">
+                        <h2>Campaign Story</h2>
+                        <div id="campaign-story-content"></div>
+                    </div>
+                    
+                    <div class="donors-section">
+                        <h2>Recent Supporters (<span id="donors-count">0</span>)</h2>
+                        <div id="donors-list"></div>
+                    </div>
+                </div>
+                
+                <div class="col-lg-4">
+                    <div class="campaign-progress">
+                        <div class="progress-stats">
+                            <div class="stat-item">
+                                <h3 id="raised-amount">0</h3>
+                                <p>Raised</p>
+                            </div>
+                            <div class="stat-item">
+                                <h3 id="goal-amount">0</h3>
+                                <p>Goal</p>
+                            </div>
+                            <div class="stat-item">
+                                <h3 id="donors-total">0</h3>
+                                <p>Donors</p>
+                            </div>
+                        </div>
+                        
+                        <div class="progress-bar-container">
+                            <div class="progress-bar-fill" id="progress-bar" style="width: 0%"></div>
+                        </div>
+                        <div class="progress-percentage" id="progress-percentage">0%</div>
+                        
+                        <button class="btn-donate-now" onclick="handleDonateClick()">
+                            Donate Now
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Scripts -->
+    <script src="js/jquery-latest.js"></script>
+    <script src="js/bootstrap.bundle.min.js"></script>
+    <script src="js/script.js"></script>
+    
+    <!-- Supabase Client Library -->
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    
+    <!-- MpaMpe Supabase Integration -->
+    <script src="js/supabase-config.js"></script>
+    <script src="js/campaigns-api.js"></script>
+    <script src="js/donations-api.js"></script>
+    <script src="js/auth-modal.js"></script>
+    
+    <script>
+        let currentCampaign = null;
+        
+        // Get slug from URL
+        function getCampaignSlug() {
+            const params = new URLSearchParams(window.location.search);
+            return params.get('slug');
+        }
+        
+        // Load campaign details
+        async function loadCampaignDetail() {
+            const slug = getCampaignSlug();
+            if (!slug) {
+                window.location.href = 'campaigns.html';
+                return;
+            }
+            
+            const result = await fetchCampaignBySlug(slug);
+            
+            if (result.success && result.campaign) {
+                currentCampaign = result.campaign;
+                displayCampaign(result.campaign);
+                loadDonors(result.campaign.id);
+            } else {
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Campaign Not Found',
+                    text: 'The campaign you are looking for does not exist.',
+                    confirmButtonText: 'Go to Campaigns'
+                }).then(() => {
+                    window.location.href = 'campaigns.html';
+                });
+            }
+        }
+        
+        // Display campaign
+        function displayCampaign(campaign) {
+            document.getElementById('campaign-image').src = campaign.featured_image || 'images/default-campaign.jpg';
+            document.getElementById('campaign-status').textContent = campaign.status === 'completed' ? 'COMPLETED' : 'ACTIVE';
+            document.getElementById('campaign-category').textContent = `# ${campaign.category?.name || 'General'}`;
+            document.getElementById('campaign-title').textContent = campaign.title;
+            document.getElementById('campaign-creator').textContent = campaign.creator?.full_name || 'Anonymous';
+            document.getElementById('campaign-date').textContent = new Date(campaign.created_at).toLocaleDateString();
+            document.getElementById('campaign-views').textContent = campaign.view_count || 0;
+            document.getElementById('campaign-story-content').innerHTML = campaign.story.replace(/\n/g, '<br>');
+            
+            // Progress
+            const progress = calculateProgress(campaign.current_amount, campaign.goal_amount);
+            document.getElementById('raised-amount').textContent = formatCurrency(campaign.current_amount, campaign.currency);
+            document.getElementById('goal-amount').textContent = formatCurrency(campaign.goal_amount, campaign.currency);
+            document.getElementById('progress-bar').style.width = progress + '%';
+            document.getElementById('progress-percentage').textContent = progress + '%';
+            
+            document.title = `${campaign.title} - MpaMpe`;
+        }
+        
+        // Load donors
+        async function loadDonors(campaignId) {
+            const result = await fetchCampaignDonations(campaignId);
+            
+            if (result.success && result.donations) {
+                const donorsList = document.getElementById('donors-list');
+                document.getElementById('donors-count').textContent = result.donations.length;
+                document.getElementById('donors-total').textContent = result.donations.length;
+                
+                if (result.donations.length === 0) {
+                    donorsList.innerHTML = '<p style="color: #999;">Be the first to support this campaign!</p>';
+                } else {
+                    donorsList.innerHTML = result.donations.map(donation => `
+                        <div class="donor-card">
+                            <div class="donor-info">
+                                <div class="donor-name">${donation.is_anonymous ? 'Anonymous' : (donation.donor_name || 'Anonymous')}</div>
+                                <div class="donor-amount">${formatCurrency(donation.amount, donation.currency)}</div>
+                            </div>
+                            ${donation.message ? `<div class="donor-message">"${donation.message}"</div>` : ''}
+                            <div class="donor-date">${new Date(donation.created_at).toLocaleDateString()}</div>
+                        </div>
+                    `).join('');
+                }
+            }
+        }
+        
+        // Handle donate click
+        function handleDonateClick() {
+            if (currentCampaign) {
+                showDonationModal(currentCampaign.id, currentCampaign.title);
+            }
+        }
+        
+        // Share functions
+        function shareOnTwitter() {
+            const url = window.location.href;
+            const text = `Support ${currentCampaign.title} on MpaMpe`;
+            window.open(`https://twitter.com/intent/tweet?url=${encodeURIComponent(url)}&text=${encodeURIComponent(text)}`, '_blank');
+            incrementShareCount();
+        }
+        
+        function shareOnLinkedIn() {
+            const url = window.location.href;
+            window.open(`https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(url)}`, '_blank');
+            incrementShareCount();
+        }
+        
+        function copyURL() {
+            navigator.clipboard.writeText(window.location.href);
+            Swal.fire({
+                icon: 'success',
+                title: 'Link Copied!',
+                text: 'Campaign link copied to clipboard',
+                timer: 2000,
+                showConfirmButton: false
+            });
+            incrementShareCount();
+        }
+        
+        // Increment share count
+        async function incrementShareCount() {
+            if (currentCampaign) {
+                await supabase
+                    .from('campaigns')
+                    .update({ share_count: (currentCampaign.share_count || 0) + 1 })
+                    .eq('id', currentCampaign.id);
+            }
+        }
+        
+        // Load on page ready
+        document.addEventListener('DOMContentLoaded', loadCampaignDetail);
+    </script>
+</body>
+</html>

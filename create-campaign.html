@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Create Campaign - MpaMpe</title>
+    
+    <link rel="icon" type="image/png" sizes="32x32" href="images/favicon-32x32.png">
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@400..700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/style.css">
+    
+    <style>
+        .create-campaign-section {
+            padding: 100px 0 80px;
+            background: #f8f9fa;
+        }
+        
+        .form-container {
+            max-width: 900px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 20px;
+            padding: 50px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+        }
+        
+        .form-header {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+        
+        .form-header h1 {
+            color: #267369;
+            font-size: 36px;
+            margin-bottom: 15px;
+        }
+        
+        .form-header p {
+            color: #666;
+            font-size: 16px;
+        }
+        
+        .form-group {
+            margin-bottom: 25px;
+        }
+        
+        .form-group label {
+            display: block;
+            color: #333;
+            font-weight: 600;
+            margin-bottom: 10px;
+            font-size: 16px;
+        }
+        
+        .form-group label .required {
+            color: #ff6600;
+        }
+        
+        .form-control {
+            width: 100%;
+            padding: 12px 15px;
+            border: 2px solid #e0e0e0;
+            border-radius: 10px;
+            font-size: 16px;
+            font-family: 'DM Sans', sans-serif;
+            transition: border-color 0.3s;
+        }
+        
+        .form-control:focus {
+            outline: none;
+            border-color: #ff6600;
+        }
+        
+        textarea.form-control {
+            min-height: 150px;
+            resize: vertical;
+        }
+        
+        .form-help {
+            font-size: 13px;
+            color: #999;
+            margin-top: 5px;
+        }
+        
+        .btn-submit {
+            background: linear-gradient(135deg, #ff6600, #ffa415);
+            color: white;
+            padding: 15px 40px;
+            border: none;
+            border-radius: 10px;
+            font-size: 18px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            width: 100%;
+            margin-top: 20px;
+        }
+        
+        .btn-submit:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(255, 102, 0, 0.3);
+        }
+        
+        .btn-submit:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+        }
+        
+        .info-box {
+            background: #fff3cd;
+            border-left: 4px solid #ffa415;
+            padding: 15px 20px;
+            border-radius: 8px;
+            margin-bottom: 30px;
+        }
+        
+        .info-box p {
+            color: #856404;
+            margin: 0;
+            font-size: 14px;
+        }
+    </style>
+</head>
+
+<body class="custom-cursor">
+    <div class="custom-cursor__cursor"></div>
+    <div class="custom-cursor__cursor-two"></div>
+    
+    <section class="create-campaign-section">
+        <div class="container">
+            <div class="form-container">
+                <div class="form-header">
+                    <h1>Start a Campaign</h1>
+                    <p>Share your story and raise funds for what matters</p>
+                </div>
+                
+                <div class="info-box">
+                    <p><i class="fas fa-info-circle"></i> Your campaign will be reviewed by our team before going live. This usually takes 24-48 hours.</p>
+                </div>
+                
+                <form id="create-campaign-form">
+                    <div class="form-group">
+                        <label>Campaign Title <span class="required">*</span></label>
+                        <input type="text" class="form-control" id="title" name="title" placeholder="e.g., Help Sarah Pay for Medical Treatment" required>
+                        <div class="form-help">Choose a clear, compelling title that describes your cause</div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label>Category <span class="required">*</span></label>
+                        <select class="form-control" id="category" name="categoryId" required>
+                            <option value="">Select a category...</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label>Goal Amount (UGX) <span class="required">*</span></label>
+                        <input type="number" class="form-control" id="goalAmount" name="goalAmount" placeholder="e.g., 5000000" min="10000" required>
+                        <div class="form-help">How much do you need to raise?</div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label>Beneficiary Name</label>
+                        <input type="text" class="form-control" id="beneficiaryName" name="beneficiaryName" placeholder="Who will benefit from this campaign?">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label>Short Description <span class="required">*</span></label>
+                        <textarea class="form-control" id="shortDescription" name="shortDescription" placeholder="Brief summary of your campaign (2-3 sentences)" maxlength="200" required style="min-height: 80px;"></textarea>
+                        <div class="form-help">This will appear in campaign listings</div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label>Full Story <span class="required">*</span></label>
+                        <textarea class="form-control" id="story" name="story" placeholder="Tell your story in detail. Why are you raising funds? How will the money be used?" required></textarea>
+                        <div class="form-help">Be specific and honest. Share details that will help people connect with your cause.</div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label>Featured Image URL <span class="required">*</span></label>
+                        <input type="url" class="form-control" id="featuredImage" name="featuredImage" placeholder="https://example.com/image.jpg" required>
+                        <div class="form-help">Upload your image to a service like Imgur or use a direct image URL</div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label>
+                            <input type="checkbox" id="terms" required>
+                            I agree to the <a href="terms.html" target="_blank">Terms & Conditions</a> and confirm that all information provided is accurate
+                        </label>
+                    </div>
+                    
+                    <button type="submit" class="btn-submit" id="submit-btn">
+                        <i class="fas fa-paper-plane"></i> Submit Campaign for Review
+                    </button>
+                </form>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Scripts -->
+    <script src="js/jquery-latest.js"></script>
+    <script src="js/script.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="js/supabase-config.js"></script>
+    <script src="js/campaigns-api.js"></script>
+    <script src="js/auth-modal.js"></script>
+    
+    <script>
+        // Check authentication
+        async function checkAuth() {
+            const user = getCurrentUser();
+            if (!user) {
+                Swal.fire({
+                    icon: 'warning',
+                    title: 'Sign In Required',
+                    text: 'You need to sign in to create a campaign.',
+                    confirmButtonText: 'Sign In'
+                }).then(() => {
+                    showSignInModal();
+                });
+                return false;
+            }
+            return true;
+        }
+        
+        // Load categories
+        async function loadCategories() {
+            const result = await fetchCategories();
+            if (result.success && result.categories) {
+                const select = document.getElementById('category');
+                result.categories.forEach(cat => {
+                    const option = document.createElement('option');
+                    option.value = cat.id;
+                    option.textContent = `${cat.name} - ${cat.sdg_name}`;
+                    select.appendChild(option);
+                });
+            }
+        }
+        
+        // Handle form submission
+        document.getElementById('create-campaign-form').addEventListener('submit', async function(e) {
+            e.preventDefault();
+            
+            // Check auth
+            if (!await checkAuth()) return;
+            
+            // Get form data
+            const formData = new FormData(e.target);
+            const campaignData = {
+                title: formData.get('title'),
+                categoryId: parseInt(formData.get('categoryId')),
+                goalAmount: formData.get('goalAmount'),
+                beneficiaryName: formData.get('beneficiaryName'),
+                shortDescription: formData.get('shortDescription'),
+                story: formData.get('story'),
+                featuredImage: formData.get('featuredImage'),
+                slug: generateSlug(formData.get('title'))
+            };
+            
+            // Disable submit button
+            const submitBtn = document.getElementById('submit-btn');
+            submitBtn.disabled = true;
+            submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Submitting...';
+            
+            // Create campaign
+            const result = await createCampaign(campaignData);
+            
+            if (result.success) {
+                Swal.fire({
+                    icon: 'success',
+                    title: 'Campaign Submitted!',
+                    html: `
+                        <p>Your campaign has been submitted for review.</p>
+                        <p>Our team will review it within 24-48 hours.</p>
+                        <p>You'll be notified once it's approved.</p>
+                    `,
+                    confirmButtonText: 'View My Campaigns'
+                }).then(() => {
+                    window.location.href = 'my-campaigns.html';
+                });
+            } else {
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Submission Failed',
+                    text: result.error || 'Something went wrong. Please try again.'
+                });
+                submitBtn.disabled = false;
+                submitBtn.innerHTML = '<i class="fas fa-paper-plane"></i> Submit Campaign for Review';
+            }
+        });
+        
+        // Initialize
+        document.addEventListener('DOMContentLoaded', async () => {
+            await checkAuth();
+            await loadCategories();
+        });
+    </script>
+</body>
+</html>

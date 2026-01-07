@@ -1927,6 +1927,15 @@
 <script src="js/SplitText.js"></script>
 <script src="js/script.js"></script>
 
+<!-- Supabase Client Library -->
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+<!-- MpaMpe Supabase Integration -->
+<script src="js/supabase-config.js"></script>
+<script src="js/campaigns-api.js"></script>
+<script src="js/donations-api.js"></script>
+<script src="js/auth-modal.js"></script>
+
 
 
 <!-- Success Popup -->
@@ -1972,24 +1981,37 @@ document.getElementById("contactForm").addEventListener("submit", function(e) {
 
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <script>
-document.getElementById('subscribe-form').addEventListener('submit', function(e){
+// Newsletter subscription with Supabase
+document.getElementById('subscribe-form').addEventListener('submit', async function(e){
     e.preventDefault();
     let formData = new FormData(this);
+    const email = formData.get('email');
+    const name = formData.get('name') || '';
 
-    fetch('subscribe.php', {
-        method: 'POST',
-        body: formData
-    })
-    .then(res => res.text())
-    .then(data => {
-        if(data.trim() === 'success'){
+    try {
+        const { data, error } = await supabase
+            .from('newsletter_subscribers')
+            .insert({
+                email: email,
+                name: name,
+                source: 'website'
+            })
+            .select();
+        
+        if (error) {
+            if (error.code === '23505') { // Duplicate email
+                Swal.fire('Already Subscribed!', 'This email is already subscribed to our newsletter.', 'info');
+            } else {
+                throw error;
+            }
+        } else {
             Swal.fire('Subscribed!', 'You are now subscribed to our newsletter.', 'success');
             this.reset();
-        } else {
-            Swal.fire('Oops!', 'Something went wrong. Try again.', 'error');
         }
-    })
-    .catch(() => Swal.fire('Oops!', 'Something went wrong. Try again.', 'error'));
+    } catch (error) {
+        console.error('Newsletter subscription error:', error);
+        Swal.fire('Oops!', 'Something went wrong. Please try again.', 'error');
+    }
 });
 </script>
 

@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MpaMpe Xmas Mission - Giving Back</title>
+    <link rel="icon" type="image/png" sizes="32x32" href="images/favicon-32x32.png">
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@400..700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/style.css">
+    
+    <style>
+        .xmas-hero {
+            background: linear-gradient(135deg, #ff6600, #ffa415);
+            padding: 120px 0 80px;
+            text-align: center;
+            color: white;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .xmas-hero::before {
+            content: '🎄';
+            position: absolute;
+            font-size: 200px;
+            opacity: 0.1;
+            top: -50px;
+            left: 10%;
+        }
+        
+        .xmas-hero::after {
+            content: '🎁';
+            position: absolute;
+            font-size: 150px;
+            opacity: 0.1;
+            bottom: -30px;
+            right: 10%;
+        }
+        
+        .xmas-hero h1 {
+            font-size: 56px;
+            margin-bottom: 20px;
+            font-weight: 700;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .xmas-hero p {
+            font-size: 20px;
+            max-width: 700px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .xmas-content {
+            padding: 80px 0;
+            background: #f8f9fa;
+        }
+        
+        .mission-card {
+            background: white;
+            border-radius: 20px;
+            padding: 40px;
+            margin-bottom: 40px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+        }
+        
+        .mission-card h2 {
+            color: #267369;
+            font-size: 32px;
+            margin-bottom: 20px;
+        }
+        
+        .mission-card p {
+            color: #666;
+            line-height: 1.8;
+            font-size: 16px;
+        }
+        
+        .impact-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+        
+        .impact-item {
+            text-align: center;
+            padding: 30px;
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 3px 15px rgba(0,0,0,0.1);
+        }
+        
+        .impact-icon {
+            font-size: 48px;
+            margin-bottom: 15px;
+        }
+        
+        .impact-number {
+            font-size: 36px;
+            color: #ff6600;
+            font-weight: 700;
+            margin-bottom: 10px;
+        }
+        
+        .impact-label {
+            color: #666;
+            font-size: 16px;
+        }
+    </style>
+</head>
+
+<body class="custom-cursor">
+    <div class="custom-cursor__cursor"></div>
+    <div class="custom-cursor__cursor-two"></div>
+    
+    <section class="xmas-hero">
+        <div class="container">
+            <h1>🎄 MpaMpe Xmas Mission 🎁</h1>
+            <p>This Christmas season, we're giving back to our community. Join us in spreading joy and making a difference in the lives of those who need it most.</p>
+        </div>
+    </section>
+    
+    <section class="xmas-content">
+        <div class="container">
+            <div class="mission-card">
+                <h2>Our Christmas Mission</h2>
+                <p>The MpaMpe Xmas Mission is our annual initiative to give back to the communities we serve. This year, we're focusing on providing essential support to families in need, ensuring that everyone can celebrate the season with dignity and joy.</p>
+                <p>Through your generous donations, we're able to provide food packages, educational supplies, healthcare support, and gifts to children who might otherwise go without this Christmas.</p>
+            </div>
+            
+            <div class="mission-card">
+                <h2>Our Impact This Season</h2>
+                <div class="impact-grid">
+                    <div class="impact-item">
+                        <div class="impact-icon">🎁</div>
+                        <div class="impact-number">500+</div>
+                        <div class="impact-label">Families Supported</div>
+                    </div>
+                    
+                    <div class="impact-item">
+                        <div class="impact-icon">🍽️</div>
+                        <div class="impact-number">1,200+</div>
+                        <div class="impact-label">Food Packages Distributed</div>
+                    </div>
+                    
+                    <div class="impact-item">
+                        <div class="impact-icon">📚</div>
+                        <div class="impact-number">300+</div>
+                        <div class="impact-label">School Supplies Provided</div>
+                    </div>
+                    
+                    <div class="impact-item">
+                        <div class="impact-icon">❤️</div>
+                        <div class="impact-number">1,000+</div>
+                        <div class="impact-label">Lives Touched</div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="mission-card" style="text-align: center;">
+                <h2>Join Our Mission</h2>
+                <p>Your contribution, no matter the size, makes a real difference. Together, we can ensure that this Christmas is special for everyone.</p>
+                <a href="campaigns.html" class="btn" style="display: inline-block; margin-top: 20px; background: linear-gradient(135deg, #ff6600, #ffa415); color: white; padding: 15px 40px; border-radius: 10px; text-decoration: none; font-weight: 600;">Support Our Xmas Mission</a>
+            </div>
+        </div>
+    </section>
+    
+    <script src="js/jquery-latest.js"></script>
+    <script src="js/script.js"></script>
+</body>
+</html>

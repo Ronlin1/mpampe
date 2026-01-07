@@ -1,0 +1,427 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>All Campaigns - MpaMpe</title>
+    
+    <link rel="icon" type="image/png" sizes="32x32" href="images/favicon-32x32.png">
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@400..700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/case.css">
+    
+    <style>
+        .campaigns-hero {
+            background: linear-gradient(135deg, #267369, #1a5550);
+            padding: 100px 0 60px;
+            text-align: center;
+            color: white;
+        }
+        
+        .campaigns-hero h1 {
+            font-size: 48px;
+            margin-bottom: 20px;
+            font-weight: 700;
+        }
+        
+        .campaigns-hero p {
+            font-size: 18px;
+            opacity: 0.9;
+        }
+        
+        .campaigns-section {
+            padding: 60px 0;
+            background: #f8f9fa;
+        }
+        
+        .filters-bar {
+            background: white;
+            padding: 25px;
+            border-radius: 15px;
+            margin-bottom: 40px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+        }
+        
+        .filters-row {
+            display: flex;
+            gap: 15px;
+            flex-wrap: wrap;
+            align-items: center;
+        }
+        
+        .filter-item {
+            flex: 1;
+            min-width: 200px;
+        }
+        
+        .filter-item label {
+            display: block;
+            color: #666;
+            font-weight: 600;
+            margin-bottom: 8px;
+            font-size: 14px;
+        }
+        
+        .filter-item select,
+        .filter-item input {
+            width: 100%;
+            padding: 10px 15px;
+            border: 2px solid #e0e0e0;
+            border-radius: 8px;
+            font-size: 15px;
+            font-family: 'DM Sans', sans-serif;
+        }
+        
+        .filter-item select:focus,
+        .filter-item input:focus {
+            outline: none;
+            border-color: #ff6600;
+        }
+        
+        .btn-filter {
+            background: linear-gradient(135deg, #ff6600, #ffa415);
+            color: white;
+            padding: 10px 25px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s;
+        }
+        
+        .btn-filter:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(255, 102, 0, 0.3);
+        }
+        
+        .campaigns-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 30px;
+        }
+        
+        .campaign-card {
+            background: white;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+            transition: transform 0.3s;
+        }
+        
+        .campaign-card:hover {
+            transform: translateY(-5px);
+        }
+        
+        .campaign-image {
+            height: 250px;
+            overflow: hidden;
+            position: relative;
+        }
+        
+        .campaign-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        .campaign-badge {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background: linear-gradient(135deg, #ff6600, #ffa415);
+            color: white;
+            padding: 6px 15px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 600;
+        }
+        
+        .campaign-content {
+            padding: 25px;
+        }
+        
+        .campaign-category {
+            color: #267369;
+            font-weight: 600;
+            font-size: 13px;
+            text-transform: uppercase;
+            margin-bottom: 10px;
+        }
+        
+        .campaign-title {
+            font-size: 22px;
+            color: #333;
+            margin-bottom: 12px;
+            font-weight: 700;
+            min-height: 60px;
+        }
+        
+        .campaign-description {
+            color: #666;
+            font-size: 14px;
+            line-height: 1.6;
+            margin-bottom: 20px;
+            min-height: 60px;
+        }
+        
+        .campaign-progress {
+            margin-bottom: 15px;
+        }
+        
+        .progress-bar {
+            height: 8px;
+            background: #e0e0e0;
+            border-radius: 10px;
+            overflow: hidden;
+            margin-bottom: 10px;
+        }
+        
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #ff6600, #ffa415);
+            transition: width 0.5s ease;
+        }
+        
+        .progress-stats {
+            display: flex;
+            justify-content: space-between;
+            font-size: 14px;
+        }
+        
+        .progress-stats .raised {
+            color: #ff6600;
+            font-weight: 700;
+        }
+        
+        .progress-stats .goal {
+            color: #999;
+        }
+        
+        .campaign-footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding-top: 15px;
+            border-top: 1px solid #e0e0e0;
+        }
+        
+        .campaign-meta {
+            color: #999;
+            font-size: 13px;
+        }
+        
+        .btn-view-campaign {
+            background: #267369;
+            color: white;
+            padding: 8px 20px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 14px;
+            transition: all 0.3s;
+        }
+        
+        .btn-view-campaign:hover {
+            background: #1a5550;
+            color: white;
+        }
+    </style>
+</head>
+
+<body class="custom-cursor">
+    <div class="custom-cursor__cursor"></div>
+    <div class="custom-cursor__cursor-two"></div>
+    
+    <!-- Hero Section -->
+    <section class="campaigns-hero">
+        <div class="container">
+            <h1>All Campaigns</h1>
+            <p>Discover causes that matter and make a difference today</p>
+        </div>
+    </section>
+    
+    <!-- Campaigns Section -->
+    <section class="campaigns-section">
+        <div class="container">
+            <!-- Filters -->
+            <div class="filters-bar">
+                <div class="filters-row">
+                    <div class="filter-item">
+                        <label>Category</label>
+                        <select id="filter-category">
+                            <option value="">All Categories</option>
+                        </select>
+                    </div>
+                    
+                    <div class="filter-item">
+                        <label>Status</label>
+                        <select id="filter-status">
+                            <option value="">All Status</option>
+                            <option value="active">Active</option>
+                            <option value="completed">Completed</option>
+                        </select>
+                    </div>
+                    
+                    <div class="filter-item">
+                        <label>Search</label>
+                        <input type="text" id="filter-search" placeholder="Search campaigns...">
+                    </div>
+                    
+                    <div class="filter-item" style="display: flex; align-items: flex-end;">
+                        <button class="btn-filter" onclick="applyFilters()">
+                            <i class="fas fa-filter"></i> Apply Filters
+                        </button>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Campaigns Grid -->
+            <div class="campaigns-grid" id="campaigns-grid">
+                <div style="grid-column: 1 / -1; text-align: center; padding: 60px 0; color: #999;">
+                    <i class="fas fa-spinner fa-spin" style="font-size: 48px; margin-bottom: 20px;"></i>
+                    <p>Loading campaigns...</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Scripts -->
+    <script src="js/jquery-latest.js"></script>
+    <script src="js/script.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="js/supabase-config.js"></script>
+    <script src="js/campaigns-api.js"></script>
+    
+    <script>
+        let allCampaigns = [];
+        
+        // Load campaigns
+        async function loadCampaigns() {
+            const result = await fetchActiveCampaigns();
+            
+            if (result.success && result.campaigns) {
+                allCampaigns = result.campaigns;
+                displayCampaigns(allCampaigns);
+            } else {
+                document.getElementById('campaigns-grid').innerHTML = `
+                    <div style="grid-column: 1 / -1; text-align: center; padding: 60px 0; color: #999;">
+                        <i class="fas fa-exclamation-circle" style="font-size: 48px; margin-bottom: 20px;"></i>
+                        <p>No campaigns found</p>
+                    </div>
+                `;
+            }
+        }
+        
+        // Display campaigns
+        function displayCampaigns(campaigns) {
+            const grid = document.getElementById('campaigns-grid');
+            
+            if (campaigns.length === 0) {
+                grid.innerHTML = `
+                    <div style="grid-column: 1 / -1; text-align: center; padding: 60px 0; color: #999;">
+                        <i class="fas fa-search" style="font-size: 48px; margin-bottom: 20px;"></i>
+                        <p>No campaigns match your filters</p>
+                    </div>
+                `;
+                return;
+            }
+            
+            grid.innerHTML = campaigns.map(campaign => {
+                const progress = calculateProgress(campaign.current_amount, campaign.goal_amount);
+                const statusBadge = campaign.status === 'completed' ? 'COMPLETED' : 'ACTIVE';
+                
+                return `
+                    <div class="campaign-card">
+                        <div class="campaign-image">
+                            <img src="${campaign.featured_image || 'images/default-campaign.jpg'}" alt="${campaign.title}">
+                            <div class="campaign-badge">${statusBadge}</div>
+                        </div>
+                        <div class="campaign-content">
+                            <div class="campaign-category"># ${campaign.category?.name || 'General'}</div>
+                            <h3 class="campaign-title">${campaign.title}</h3>
+                            <p class="campaign-description">${campaign.short_description || campaign.story.substring(0, 100) + '...'}</p>
+                            
+                            <div class="campaign-progress">
+                                <div class="progress-bar">
+                                    <div class="progress-fill" style="width: ${progress}%"></div>
+                                </div>
+                                <div class="progress-stats">
+                                    <span class="raised">${formatCurrency(campaign.current_amount, campaign.currency)} raised</span>
+                                    <span class="goal">of ${formatCurrency(campaign.goal_amount, campaign.currency)}</span>
+                                </div>
+                            </div>
+                            
+                            <div class="campaign-footer">
+                                <div class="campaign-meta">
+                                    <i class="fas fa-users"></i> ${campaign.donor_count || 0} donors
+                                </div>
+                                <a href="campaign.html?slug=${campaign.slug}" class="btn-view-campaign">View Campaign</a>
+                            </div>
+                        </div>
+                    </div>
+                `;
+            }).join('');
+        }
+        
+        // Load categories for filter
+        async function loadCategories() {
+            const result = await fetchCategories();
+            if (result.success && result.categories) {
+                const select = document.getElementById('filter-category');
+                result.categories.forEach(cat => {
+                    const option = document.createElement('option');
+                    option.value = cat.id;
+                    option.textContent = cat.name;
+                    select.appendChild(option);
+                });
+            }
+        }
+        
+        // Apply filters
+        function applyFilters() {
+            const categoryId = document.getElementById('filter-category').value;
+            const status = document.getElementById('filter-status').value;
+            const search = document.getElementById('filter-search').value.toLowerCase();
+            
+            let filtered = allCampaigns;
+            
+            // Filter by category
+            if (categoryId) {
+                filtered = filtered.filter(c => c.category_id == categoryId);
+            }
+            
+            // Filter by status
+            if (status) {
+                filtered = filtered.filter(c => c.status === status);
+            }
+            
+            // Filter by search
+            if (search) {
+                filtered = filtered.filter(c => 
+                    c.title.toLowerCase().includes(search) ||
+                    c.story.toLowerCase().includes(search) ||
+                    (c.short_description && c.short_description.toLowerCase().includes(search))
+                );
+            }
+            
+            displayCampaigns(filtered);
+        }
+        
+        // Search on enter key
+        document.getElementById('filter-search').addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') {
+                applyFilters();
+            }
+        });
+        
+        // Initialize
+        document.addEventListener('DOMContentLoaded', async () => {
+            await loadCategories();
+            await loadCampaigns();
+        });
+    </script>
+</body>
+</html>
