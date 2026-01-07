@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Our Team - MpaMpe</title>
+    <link rel="icon" type="image/png" sizes="32x32" href="images/favicon-32x32.png">
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@400..700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/animate.min.css">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/responsive.css">
+    
+    <style>
+        .team-hero {
+            background: linear-gradient(135deg, #267369, #1a5550);
+            padding: 120px 0 80px;
+            text-align: center;
+            color: white;
+        }
+        
+        .team-hero h1 {
+            font-size: 56px;
+            margin-bottom: 20px;
+            font-weight: 700;
+            animation: fadeInDown 0.8s ease;
+        }
+        
+        .team-hero p {
+            font-size: 20px;
+            max-width: 700px;
+            margin: 0 auto;
+            animation: fadeInUp 1s ease;
+        }
+        
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        .team-section {
+            padding: 80px 0;
+            background: #f8f9fa;
+        }
+        
+        .team-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 40px;
+            margin-top: 50px;
+        }
+        
+        .team-card {
+            background: white;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+            position: relative;
+        }
+        
+        .team-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.2);
+        }
+        
+        .team-image {
+            height: 350px;
+            overflow: hidden;
+            position: relative;
+        }
+        
+        .team-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+        
+        .team-card:hover .team-image img {
+            transform: scale(1.1);
+        }
+        
+        .team-social {
+            position: absolute;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 10px;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+        
+        .team-card:hover .team-social {
+            opacity: 1;
+        }
+        
+        .social-link {
+            width: 40px;
+            height: 40px;
+            background: linear-gradient(135deg, #ff6600, #ffa415);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            text-decoration: none;
+            transition: all 0.3s;
+        }
+        
+        .social-link:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(255, 102, 0, 0.4);
+        }
+        
+        .team-content {
+            padding: 30px;
+            text-align: center;
+        }
+        
+        .team-name {
+            font-size: 24px;
+            color: #333;
+            font-weight: 700;
+            margin-bottom: 8px;
+        }
+        
+        .team-role {
+            color: #ff6600;
+            font-weight: 600;
+            font-size: 16px;
+            margin-bottom: 15px;
+        }
+        
+        .team-bio {
+            color: #666;
+            line-height: 1.6;
+            font-size: 14px;
+        }
+        
+        .team-badge {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: linear-gradient(135deg, #ff6600, #ffa415);
+            color: white;
+            padding: 6px 15px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 600;
+            z-index: 1;
+        }
+    </style>
+</head>
+
+<body class="custom-cursor">
+    <div class="custom-cursor__cursor"></div>
+    <div class="custom-cursor__cursor-two"></div>
+    
+    <div id="nav-placeholder"></div>
+    
+    <section class="team-hero">
+        <div class="container">
+            <h1>Meet Our Team</h1>
+            <p>Passionate individuals dedicated to making a difference in Uganda's communities</p>
+        </div>
+    </section>
+    
+    <section class="team-section">
+        <div class="container">
+            <div class="team-grid" id="team-grid">
+                <div style="grid-column: 1 / -1; text-align: center; padding: 60px 0; color: #999;">
+                    <i class="fas fa-spinner fa-spin" style="font-size: 48px; margin-bottom: 20px;"></i>
+                    <p>Loading team members...</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <div id="footer-placeholder"></div>
+    
+    <script src="js/jquery-latest.js"></script>
+    <script src="js/script.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="js/supabase-config.js"></script>
+    <script src="js/navigation.js"></script>
+    
+    <script>
+        // Initialize
+        document.addEventListener('DOMContentLoaded', () => {
+            initializeNavFooter('team');
+            loadTeamMembers();
+        });
+        
+        // Load team members from Supabase
+        async function loadTeamMembers() {
+            const { data: members, error } = await supabase
+                .from('team_members')
+                .select('*')
+                .order('display_order', { ascending: true });
+            
+            const grid = document.getElementById('team-grid');
+            
+            if (error || !members || members.length === 0) {
+                grid.innerHTML = `
+                    <div style="grid-column: 1 / -1; text-align: center; padding: 60px 0;">
+                        <h3 style="color: #666; margin-bottom: 20px;">Coming Soon!</h3>
+                        <p style="color: #999;">We're introducing our amazing team. Check back soon!</p>
+                    </div>
+                `;
+                return;
+            }
+            
+            grid.innerHTML = members.map(member => {
+                const socialLinks = [];
+                if (member.twitter) socialLinks.push(`<a href="${member.twitter}" target="_blank" class="social-link"><i class="fab fa-twitter"></i></a>`);
+                if (member.linkedin) socialLinks.push(`<a href="${member.linkedin}" target="_blank" class="social-link"><i class="fab fa-linkedin"></i></a>`);
+                if (member.email) socialLinks.push(`<a href="mailto:${member.email}" class="social-link"><i class="fas fa-envelope"></i></a>`);
+                
+                return `
+                    <div class="team-card">
+                        ${member.is_founder ? '<div class="team-badge">Founder</div>' : ''}
+                        <div class="team-image">
+                            <img src="${member.photo_url || 'images/team-default.jpg'}" alt="${member.name}">
+                            ${socialLinks.length > 0 ? `<div class="team-social">${socialLinks.join('')}</div>` : ''}
+                        </div>
+                        <div class="team-content">
+                            <h3 class="team-name">${member.name}</h3>
+                            <div class="team-role">${member.role}</div>
+                            <p class="team-bio">${member.bio || ''}</p>
+                        </div>
+                    </div>
+                `;
+            }).join('');
+        }
+    </script>
+</body>
+</html>

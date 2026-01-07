@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Photo Gallery - MpaMpe</title>
+    <link rel="icon" type="image/png" sizes="32x32" href="images/favicon-32x32.png">
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@400..700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/animate.min.css">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/responsive.css">
+    
+    <style>
+        .gallery-hero {
+            background: linear-gradient(135deg, #ff6600, #ffa415);
+            padding: 120px 0 80px;
+            text-align: center;
+            color: white;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .gallery-hero::before {
+            content: '📸';
+            position: absolute;
+            font-size: 200px;
+            opacity: 0.1;
+            top: -50px;
+            right: 10%;
+            animation: float 6s ease-in-out infinite;
+        }
+        
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-20px); }
+        }
+        
+        .gallery-hero h1 {
+            font-size: 56px;
+            margin-bottom: 20px;
+            font-weight: 700;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .gallery-hero p {
+            font-size: 20px;
+            max-width: 700px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .gallery-section {
+            padding: 80px 0;
+            background: #f8f9fa;
+        }
+        
+        .gallery-filters {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-bottom: 50px;
+            flex-wrap: wrap;
+        }
+        
+        .filter-btn {
+            padding: 12px 30px;
+            border: 2px solid #e0e0e0;
+            background: white;
+            border-radius: 25px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s;
+            color: #666;
+        }
+        
+        .filter-btn:hover, .filter-btn.active {
+            background: linear-gradient(135deg, #ff6600, #ffa415);
+            color: white;
+            border-color: #ff6600;
+            transform: translateY(-2px);
+        }
+        
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 30px;
+        }
+        
+        .gallery-item {
+            position: relative;
+            border-radius: 20px;
+            overflow: hidden;
+            cursor: pointer;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+        }
+        
+        .gallery-item:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.2);
+        }
+        
+        .gallery-image {
+            width: 100%;
+            height: 350px;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+        
+        .gallery-item:hover .gallery-image {
+            transform: scale(1.1);
+        }
+        
+        .gallery-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(to top, rgba(0,0,0,0.8), transparent);
+            padding: 30px 20px 20px;
+            transform: translateY(100%);
+            transition: transform 0.3s ease;
+        }
+        
+        .gallery-item:hover .gallery-overlay {
+            transform: translateY(0);
+        }
+        
+        .gallery-title {
+            color: white;
+            font-size: 18px;
+            font-weight: 700;
+            margin-bottom: 5px;
+        }
+        
+        .gallery-meta {
+            color: rgba(255,255,255,0.8);
+            font-size: 14px;
+        }
+        
+        .gallery-tag {
+            display: inline-block;
+            background: linear-gradient(135deg, #ff6600, #ffa415);
+            color: white;
+            padding: 4px 12px;
+            border-radius: 12px;
+            font-size: 12px;
+            font-weight: 600;
+            position: absolute;
+            top: 15px;
+            right: 15px;
+        }
+    </style>
+</head>
+
+<body class="custom-cursor">
+    <div class="custom-cursor__cursor"></div>
+    <div class="custom-cursor__cursor-two"></div>
+    
+    <div id="nav-placeholder"></div>
+    
+    <section class="gallery-hero">
+        <div class="container">
+            <h1>Photo Gallery</h1>
+            <p>Moments of impact, hope, and transformation captured through our journey</p>
+        </div>
+    </section>
+    
+    <section class="gallery-section">
+        <div class="container">
+            <div class="gallery-filters">
+                <button class="filter-btn active" data-filter="all">All Photos</button>
+                <button class="filter-btn" data-filter="campaigns">Campaigns</button>
+                <button class="filter-btn" data-filter="events">Events</button>
+                <button class="filter-btn" data-filter="awards">Awards</button>
+                <button class="filter-btn" data-filter="community">Community</button>
+            </div>
+            
+            <div class="gallery-grid" id="gallery-grid">
+                <div style="grid-column: 1 / -1; text-align: center; padding: 60px 0; color: #999;">
+                    <i class="fas fa-spinner fa-spin" style="font-size: 48px; margin-bottom: 20px;"></i>
+                    <p>Loading gallery...</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <div id="footer-placeholder"></div>
+    
+    <script src="js/jquery-latest.js"></script>
+    <script src="js/script.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="js/supabase-config.js"></script>
+    <script src="js/navigation.js"></script>
+    
+    <script>
+        let allGalleryItems = [];
+        let currentFilter = 'all';
+        
+        // Initialize
+        document.addEventListener('DOMContentLoaded', () => {
+            initializeNavFooter('gallery');
+            loadGalleryItems();
+            initializeFilters();
+        });
+        
+        // Load gallery items from Supabase
+        async function loadGalleryItems() {
+            const { data: items, error } = await supabase
+                .from('gallery_items')
+                .select('*')
+                .order('created_at', { ascending: false });
+            
+            const grid = document.getElementById('gallery-grid');
+            
+            if (error || !items || items.length === 0) {
+                grid.innerHTML = `
+                    <div style="grid-column: 1 / -1; text-align: center; padding: 60px 0;">
+                        <h3 style="color: #666; margin-bottom: 20px;">Coming Soon!</h3>
+                        <p style="color: #999;">We're building our photo gallery. Check back soon for amazing moments!</p>
+                    </div>
+                `;
+                return;
+            }
+            
+            allGalleryItems = items;
+            displayGalleryItems(items);
+        }
+        
+        // Display gallery items
+        function displayGalleryItems(items) {
+            const grid = document.getElementById('gallery-grid');
+            
+            if (items.length === 0) {
+                grid.innerHTML = `
+                    <div style="grid-column: 1 / -1; text-align: center; padding: 60px 0;">
+                        <p style="color: #999;">No photos match this filter</p>
+                    </div>
+                `;
+                return;
+            }
+            
+            grid.innerHTML = items.map(item => {
+                const date = new Date(item.created_at).toLocaleDateString('en-US', { 
+                    month: 'short', 
+                    year: 'numeric' 
+                });
+                
+                return `
+                    <div class="gallery-item" data-category="${item.category}">
+                        <img src="${item.image_url}" alt="${item.title}" class="gallery-image">
+                        <div class="gallery-tag">${item.category}</div>
+                        <div class="gallery-overlay">
+                            <div class="gallery-title">${item.title}</div>
+                            <div class="gallery-meta">${date}${item.location ? ' • ' + item.location : ''}</div>
+                        </div>
+                    </div>
+                `;
+            }).join('');
+        }
+        
+        // Initialize filter buttons
+        function initializeFilters() {
+            const filterBtns = document.querySelectorAll('.filter-btn');
+            
+            filterBtns.forEach(btn => {
+                btn.addEventListener('click', () => {
+                    // Update active state
+                    filterBtns.forEach(b => b.classList.remove('active'));
+                    btn.classList.add('active');
+                    
+                    // Filter items
+                    const filter = btn.dataset.filter;
+                    currentFilter = filter;
+                    
+                    if (filter === 'all') {
+                        displayGalleryItems(allGalleryItems);
+                    } else {
+                        const filtered = allGalleryItems.filter(item => item.category === filter);
+                        displayGalleryItems(filtered);
+                    }
+                });
+            });
+        }
+    </script>
+</body>
+</html>

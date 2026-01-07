@@ -1,0 +1,389 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MpaMpe Mavericks - MpaMpe</title>
+    <link rel="icon" type="image/png" sizes="32x32" href="images/favicon-32x32.png">
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@400..700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/animate.min.css">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/responsive.css">
+    
+    <style>
+        .mavericks-hero {
+            background: linear-gradient(135deg, #ff6600, #ffa415);
+            padding: 120px 0 80px;
+            text-align: center;
+            color: white;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .mavericks-hero::before {
+            content: '⭐';
+            position: absolute;
+            font-size: 200px;
+            opacity: 0.1;
+            top: -50px;
+            left: 5%;
+            animation: rotate 20s linear infinite;
+        }
+        
+        .mavericks-hero::after {
+            content: '💪';
+            position: absolute;
+            font-size: 150px;
+            opacity: 0.1;
+            bottom: -30px;
+            right: 5%;
+            animation: pulse 3s ease-in-out infinite;
+        }
+        
+        @keyframes rotate {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+        
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+        }
+        
+        .mavericks-hero h1 {
+            font-size: 56px;
+            margin-bottom: 20px;
+            font-weight: 700;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .mavericks-hero p {
+            font-size: 20px;
+            max-width: 700px;
+            margin: 0 auto 30px;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .hero-cta {
+            background: white;
+            color: #ff6600;
+            padding: 15px 40px;
+            border-radius: 30px;
+            font-weight: 700;
+            text-decoration: none;
+            display: inline-block;
+            transition: all 0.3s;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .hero-cta:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            color: #ff6600;
+        }
+        
+        .mavericks-section {
+            padding: 80px 0;
+            background: #f8f9fa;
+        }
+        
+        .section-intro {
+            text-align: center;
+            max-width: 800px;
+            margin: 0 auto 60px;
+        }
+        
+        .section-intro h2 {
+            color: #267369;
+            font-size: 42px;
+            margin-bottom: 20px;
+            font-weight: 700;
+        }
+        
+        .section-intro p {
+            color: #666;
+            font-size: 18px;
+            line-height: 1.7;
+        }
+        
+        .mavericks-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 30px;
+            margin-top: 50px;
+        }
+        
+        .maverick-card {
+            background: white;
+            border-radius: 20px;
+            padding: 30px;
+            text-align: center;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .maverick-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 5px;
+            background: linear-gradient(90deg, #ff6600, #ffa415);
+            transform: scaleX(0);
+            transition: transform 0.3s ease;
+        }
+        
+        .maverick-card:hover::before {
+            transform: scaleX(1);
+        }
+        
+        .maverick-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.15);
+        }
+        
+        .maverick-avatar {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            margin: 0 auto 20px;
+            background: linear-gradient(135deg, #ff6600, #ffa415);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 48px;
+            font-weight: 700;
+            overflow: hidden;
+        }
+        
+        .maverick-avatar img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        .maverick-name {
+            font-size: 22px;
+            color: #333;
+            font-weight: 700;
+            margin-bottom: 8px;
+        }
+        
+        .maverick-role {
+            color: #ff6600;
+            font-weight: 600;
+            font-size: 14px;
+            margin-bottom: 15px;
+        }
+        
+        .maverick-contribution {
+            color: #666;
+            font-size: 14px;
+            line-height: 1.6;
+        }
+        
+        .maverick-stats {
+            display: flex;
+            justify-content: space-around;
+            margin-top: 20px;
+            padding-top: 20px;
+            border-top: 1px solid #e0e0e0;
+        }
+        
+        .stat-item {
+            text-align: center;
+        }
+        
+        .stat-number {
+            font-size: 24px;
+            color: #ff6600;
+            font-weight: 700;
+        }
+        
+        .stat-label {
+            font-size: 12px;
+            color: #999;
+            text-transform: uppercase;
+        }
+        
+        .benefits-section {
+            background: white;
+            padding: 80px 0;
+        }
+        
+        .benefits-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            margin-top: 50px;
+        }
+        
+        .benefit-card {
+            text-align: center;
+        }
+        
+        .benefit-icon {
+            width: 80px;
+            height: 80px;
+            background: linear-gradient(135deg, #ff6600, #ffa415);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 20px;
+            font-size: 36px;
+            color: white;
+        }
+        
+        .benefit-title {
+            font-size: 20px;
+            color: #333;
+            font-weight: 700;
+            margin-bottom: 10px;
+        }
+        
+        .benefit-text {
+            color: #666;
+            line-height: 1.6;
+        }
+    </style>
+</head>
+
+<body class="custom-cursor">
+    <div class="custom-cursor__cursor"></div>
+    <div class="custom-cursor__cursor-two"></div>
+    
+    <div id="nav-placeholder"></div>
+    
+    <section class="mavericks-hero">
+        <div class="container">
+            <h1>MpaMpe Mavericks</h1>
+            <p>Join our community of passionate volunteers making a difference across Uganda</p>
+            <a href="#join" class="hero-cta">Become a Maverick</a>
+        </div>
+    </section>
+    
+    <section class="mavericks-section">
+        <div class="container">
+            <div class="section-intro">
+                <h2>Who Are Mavericks?</h2>
+                <p>MpaMpe Mavericks are dedicated volunteers who believe in the power of community-driven change. They support campaigns, spread awareness, and help connect donors with causes that matter.</p>
+            </div>
+            
+            <div class="mavericks-grid" id="mavericks-grid">
+                <div style="grid-column: 1 / -1; text-align: center; padding: 60px 0; color: #999;">
+                    <i class="fas fa-spinner fa-spin" style="font-size: 48px; margin-bottom: 20px;"></i>
+                    <p>Loading Mavericks...</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <section class="benefits-section">
+        <div class="container">
+            <div class="section-intro">
+                <h2>Why Become a Maverick?</h2>
+                <p>Join a community of changemakers and enjoy exclusive benefits</p>
+            </div>
+            
+            <div class="benefits-grid">
+                <div class="benefit-card">
+                    <div class="benefit-icon">🎯</div>
+                    <h3 class="benefit-title">Make an Impact</h3>
+                    <p class="benefit-text">Directly contribute to campaigns and see the real-world impact of your efforts</p>
+                </div>
+                
+                <div class="benefit-card">
+                    <div class="benefit-icon">🤝</div>
+                    <h3 class="benefit-title">Network</h3>
+                    <p class="benefit-text">Connect with like-minded individuals and expand your professional network</p>
+                </div>
+                
+                <div class="benefit-card">
+                    <div class="benefit-icon">📚</div>
+                    <h3 class="benefit-title">Learn & Grow</h3>
+                    <p class="benefit-text">Gain skills in fundraising, community organizing, and social impact</p>
+                </div>
+                
+                <div class="benefit-card">
+                    <div class="benefit-icon">🏆</div>
+                    <h3 class="benefit-title">Recognition</h3>
+                    <p class="benefit-text">Get recognized for your contributions and build your portfolio</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <div id="footer-placeholder"></div>
+    
+    <script src="js/jquery-latest.js"></script>
+    <script src="js/script.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="js/supabase-config.js"></script>
+    <script src="js/navigation.js"></script>
+    
+    <script>
+        // Initialize
+        document.addEventListener('DOMContentLoaded', () => {
+            initializeNavFooter('mavericks');
+            loadMavericks();
+        });
+        
+        // Load mavericks from Supabase
+        async function loadMavericks() {
+            const { data: mavericks, error } = await supabase
+                .from('mavericks')
+                .select('*')
+                .eq('status', 'active')
+                .order('campaigns_supported', { ascending: false });
+            
+            const grid = document.getElementById('mavericks-grid');
+            
+            if (error || !mavericks || mavericks.length === 0) {
+                grid.innerHTML = `
+                    <div style="grid-column: 1 / -1; text-align: center; padding: 60px 0;">
+                        <h3 style="color: #666; margin-bottom: 20px;">Be the First!</h3>
+                        <p style="color: #999;">Join our Mavericks community and be among the first volunteers to make a difference.</p>
+                    </div>
+                `;
+                return;
+            }
+            
+            grid.innerHTML = mavericks.map(maverick => {
+                const initial = maverick.name ? maverick.name.charAt(0).toUpperCase() : 'M';
+                
+                return `
+                    <div class="maverick-card">
+                        <div class="maverick-avatar">
+                            ${maverick.photo_url ? `<img src="${maverick.photo_url}" alt="${maverick.name}">` : initial}
+                        </div>
+                        <h3 class="maverick-name">${maverick.name}</h3>
+                        <div class="maverick-role">${maverick.specialty || 'Community Volunteer'}</div>
+                        <p class="maverick-contribution">${maverick.bio || 'Passionate about making a difference in our community'}</p>
+                        <div class="maverick-stats">
+                            <div class="stat-item">
+                                <div class="stat-number">${maverick.campaigns_supported || 0}</div>
+                                <div class="stat-label">Campaigns</div>
+                            </div>
+                            <div class="stat-item">
+                                <div class="stat-number">${maverick.hours_volunteered || 0}</div>
+                                <div class="stat-label">Hours</div>
+                            </div>
+                        </div>
+                    </div>
+                `;
+            }).join('');
+        }
+    </script>
+</body>
+</html>

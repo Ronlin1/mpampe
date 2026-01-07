@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Awards & Recognition - MpaMpe</title>
+    <link rel="icon" type="image/png" sizes="32x32" href="images/favicon-32x32.png">
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@400..700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/animate.min.css">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/responsive.css">
+    
+    <style>
+        .awards-hero {
+            background: linear-gradient(135deg, #ffa415, #ff6600);
+            padding: 120px 0 80px;
+            text-align: center;
+            color: white;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .awards-hero::before {
+            content: '🏆';
+            position: absolute;
+            font-size: 300px;
+            opacity: 0.05;
+            top: -80px;
+            left: 50%;
+            transform: translateX(-50%);
+            animation: float 6s ease-in-out infinite;
+        }
+        
+        @keyframes float {
+            0%, 100% { transform: translateX(-50%) translateY(0); }
+            50% { transform: translateX(-50%) translateY(-20px); }
+        }
+        
+        .awards-hero h1 {
+            font-size: 56px;
+            margin-bottom: 20px;
+            font-weight: 700;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .awards-hero p {
+            font-size: 20px;
+            max-width: 700px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .awards-section {
+            padding: 80px 0;
+            background: #f8f9fa;
+        }
+        
+        .timeline {
+            position: relative;
+            max-width: 1000px;
+            margin: 50px auto;
+        }
+        
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 4px;
+            height: 100%;
+            background: linear-gradient(180deg, #ff6600, #ffa415);
+        }
+        
+        .timeline-item {
+            margin-bottom: 60px;
+            position: relative;
+        }
+        
+        .timeline-item:nth-child(odd) .award-card {
+            margin-right: 52%;
+        }
+        
+        .timeline-item:nth-child(even) .award-card {
+            margin-left: 52%;
+        }
+        
+        .timeline-dot {
+            position: absolute;
+            left: 50%;
+            top: 30px;
+            transform: translateX(-50%);
+            width: 30px;
+            height: 30px;
+            background: linear-gradient(135deg, #ff6600, #ffa415);
+            border-radius: 50%;
+            border: 5px solid #f8f9fa;
+            z-index: 1;
+            animation: pulse 2s infinite;
+        }
+        
+        @keyframes pulse {
+            0%, 100% { box-shadow: 0 0 0 0 rgba(255, 102, 0, 0.7); }
+            50% { box-shadow: 0 0 0 15px rgba(255, 102, 0, 0); }
+        }
+        
+        .award-card {
+            background: white;
+            border-radius: 20px;
+            padding: 35px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+            position: relative;
+        }
+        
+        .award-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.15);
+        }
+        
+        .award-icon {
+            width: 80px;
+            height: 80px;
+            background: linear-gradient(135deg, #ff6600, #ffa415);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 40px;
+            margin-bottom: 20px;
+        }
+        
+        .award-year {
+            color: #ff6600;
+            font-weight: 700;
+            font-size: 18px;
+            margin-bottom: 10px;
+        }
+        
+        .award-title {
+            font-size: 26px;
+            color: #333;
+            font-weight: 700;
+            margin-bottom: 12px;
+        }
+        
+        .award-organization {
+            color: #267369;
+            font-weight: 600;
+            font-size: 16px;
+            margin-bottom: 15px;
+        }
+        
+        .award-description {
+            color: #666;
+            line-height: 1.7;
+            font-size: 15px;
+        }
+        
+        .stats-section {
+            background: white;
+            padding: 80px 0;
+        }
+        
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 40px;
+            margin-top: 50px;
+        }
+        
+        .stat-card {
+            text-align: center;
+        }
+        
+        .stat-number {
+            font-size: 56px;
+            color: #ff6600;
+            font-weight: 700;
+            margin-bottom: 10px;
+        }
+        
+        .stat-label {
+            color: #666;
+            font-size: 18px;
+            font-weight: 600;
+        }
+        
+        @media (max-width: 768px) {
+            .timeline::before {
+                left: 30px;
+            }
+            
+            .timeline-dot {
+                left: 30px;
+            }
+            
+            .timeline-item:nth-child(odd) .award-card,
+            .timeline-item:nth-child(even) .award-card {
+                margin-left: 80px;
+                margin-right: 0;
+            }
+        }
+    </style>
+</head>
+
+<body class="custom-cursor">
+    <div class="custom-cursor__cursor"></div>
+    <div class="custom-cursor__cursor-two"></div>
+    
+    <div id="nav-placeholder"></div>
+    
+    <section class="awards-hero">
+        <div class="container">
+            <h1>Awards & Recognition</h1>
+            <p>Celebrating our journey of innovation, impact, and excellence in crowdfunding</p>
+        </div>
+    </section>
+    
+    <section class="awards-section">
+        <div class="container">
+            <div class="timeline" id="awards-timeline">
+                <div style="text-align: center; padding: 60px 0; color: #999;">
+                    <i class="fas fa-spinner fa-spin" style="font-size: 48px; margin-bottom: 20px;"></i>
+                    <p>Loading awards...</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <section class="stats-section">
+        <div class="container">
+            <div style="text-align: center; margin-bottom: 30px;">
+                <h2 style="color: #267369; font-size: 42px; font-weight: 700;">Our Impact in Numbers</h2>
+            </div>
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <div class="stat-number">5+</div>
+                    <div class="stat-label">Awards Won</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">3</div>
+                    <div class="stat-label">Successful Campaigns</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">100+</div>
+                    <div class="stat-label">Lives Impacted</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">50+</div>
+                    <div class="stat-label">Community Partners</div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <div id="footer-placeholder"></div>
+    
+    <script src="js/jquery-latest.js"></script>
+    <script src="js/script.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="js/supabase-config.js"></script>
+    <script src="js/navigation.js"></script>
+    
+    <script>
+        // Initialize
+        document.addEventListener('DOMContentLoaded', () => {
+            initializeNavFooter('awards');
+            loadAwards();
+        });
+        
+        // Load awards from Supabase
+        async function loadAwards() {
+            const { data: awards, error } = await supabase
+                .from('awards')
+                .select('*')
+                .order('year', { ascending: false });
+            
+            const timeline = document.getElementById('awards-timeline');
+            
+            if (error || !awards || awards.length === 0) {
+                // Show default awards if none in database
+                const defaultAwards = [
+                    {
+                        year: 2024,
+                        title: 'Women in FinTech Award',
+                        organization: 'FinTech Association Uganda',
+                        description: 'Recognized for innovation in financial inclusion and empowering women through crowdfunding technology.',
+                        icon: '👩‍💼'
+                    },
+                    {
+                        year: 2024,
+                        title: 'Google Developer Solutions Award',
+                        organization: 'Google for Developers',
+                        description: 'Awarded for building innovative solutions that solve real-world problems using Google technologies.',
+                        icon: '🏆'
+                    },
+                    {
+                        year: 2023,
+                        title: 'MTN MoMo Hackathon Winner',
+                        organization: 'MTN Uganda',
+                        description: 'First place winner for developing a mobile money integration that enhances financial accessibility.',
+                        icon: '🥇'
+                    },
+                    {
+                        year: 2023,
+                        title: 'Social Impact Innovation Award',
+                        organization: 'Uganda Innovation Hub',
+                        description: 'Recognized for creating measurable social impact through technology-driven fundraising.',
+                        icon: '💡'
+                    },
+                    {
+                        year: 2023,
+                        title: 'Best Startup Award',
+                        organization: 'Kampala Tech Summit',
+                        description: 'Awarded as the most promising startup in the social enterprise category.',
+                        icon: '🚀'
+                    }
+                ];
+                
+                displayAwards(defaultAwards);
+                return;
+            }
+            
+            displayAwards(awards);
+        }
+        
+        // Display awards in timeline
+        function displayAwards(awards) {
+            const timeline = document.getElementById('awards-timeline');
+            
+            timeline.innerHTML = awards.map(award => `
+                <div class="timeline-item">
+                    <div class="timeline-dot"></div>
+                    <div class="award-card">
+                        <div class="award-icon">${award.icon || '🏆'}</div>
+                        <div class="award-year">${award.year}</div>
+                        <h3 class="award-title">${award.title}</h3>
+                        <div class="award-organization">${award.organization}</div>
+                        <p class="award-description">${award.description}</p>
+                    </div>
+                </div>
+            `).join('');
+        }
+    </script>
+</body>
+</html>

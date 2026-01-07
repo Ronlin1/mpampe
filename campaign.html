@@ -264,6 +264,8 @@
 </head>
 
 <body class="custom-cursor">
+    
+    <div id="nav-placeholder"></div>
     <div class="custom-cursor__cursor"></div>
     <div class="custom-cursor__cursor-two"></div>
     
@@ -518,6 +520,14 @@
         
         // Load on page ready
         document.addEventListener('DOMContentLoaded', loadCampaignDetail);
+    </script>
+    <div id="footer-placeholder"></div>
+    
+    <script src="js/navigation.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            initializeNavFooter();
+        });
     </script>
 </body>
 </html>

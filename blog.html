@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blog & Stories - MpaMpe</title>
+    <link rel="icon" type="image/png" sizes="32x32" href="images/favicon-32x32.png">
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@400..700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/animate.min.css">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/responsive.css">
+    
+    <style>
+        .blog-hero {
+            background: linear-gradient(135deg, #267369, #1a5550);
+            padding: 120px 0 80px;
+            text-align: center;
+            color: white;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .blog-hero h1 {
+            font-size: 56px;
+            margin-bottom: 20px;
+            font-weight: 700;
+            animation: fadeInUp 0.8s ease;
+        }
+        
+        .blog-hero p {
+            font-size: 20px;
+            max-width: 700px;
+            margin: 0 auto;
+            animation: fadeInUp 1s ease;
+        }
+        
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        .blog-section {
+            padding: 80px 0;
+            background: #f8f9fa;
+        }
+        
+        .blog-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 40px;
+            margin-top: 40px;
+        }
+        
+        .blog-card {
+            background: white;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+        }
+        
+        .blog-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.15);
+        }
+        
+        .blog-image {
+            height: 250px;
+            overflow: hidden;
+            position: relative;
+        }
+        
+        .blog-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+        
+        .blog-card:hover .blog-image img {
+            transform: scale(1.1);
+        }
+        
+        .blog-date {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            background: linear-gradient(135deg, #ff6600, #ffa415);
+            color: white;
+            padding: 8px 15px;
+            border-radius: 10px;
+            font-weight: 600;
+            font-size: 14px;
+        }
+        
+        .blog-content {
+            padding: 30px;
+        }
+        
+        .blog-category {
+            color: #267369;
+            font-weight: 600;
+            font-size: 13px;
+            text-transform: uppercase;
+            margin-bottom: 10px;
+        }
+        
+        .blog-title {
+            font-size: 24px;
+            color: #333;
+            margin-bottom: 15px;
+            font-weight: 700;
+            line-height: 1.3;
+        }
+        
+        .blog-excerpt {
+            color: #666;
+            line-height: 1.7;
+            margin-bottom: 20px;
+        }
+        
+        .blog-author {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            padding-top: 20px;
+            border-top: 1px solid #e0e0e0;
+        }
+        
+        .author-avatar {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #ff6600, #ffa415);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: 700;
+        }
+        
+        .author-info {
+            flex: 1;
+        }
+        
+        .author-name {
+            font-weight: 600;
+            color: #333;
+            font-size: 14px;
+        }
+        
+        .read-time {
+            color: #999;
+            font-size: 13px;
+        }
+        
+        .btn-read-more {
+            background: #267369;
+            color: white;
+            padding: 8px 20px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 14px;
+            transition: all 0.3s;
+        }
+        
+        .btn-read-more:hover {
+            background: #1a5550;
+            color: white;
+        }
+    </style>
+</head>
+
+<body class="custom-cursor">
+    <div class="custom-cursor__cursor"></div>
+    <div class="custom-cursor__cursor-two"></div>
+    
+    <div id="nav-placeholder"></div>
+    
+    <section class="blog-hero">
+        <div class="container">
+            <h1>Blog & Stories</h1>
+            <p>Read inspiring stories of change, impact, and hope from our community</p>
+        </div>
+    </section>
+    
+    <section class="blog-section">
+        <div class="container">
+            <div class="blog-grid" id="blog-grid">
+                <div style="grid-column: 1 / -1; text-align: center; padding: 60px 0; color: #999;">
+                    <i class="fas fa-spinner fa-spin" style="font-size: 48px; margin-bottom: 20px;"></i>
+                    <p>Loading stories...</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <div id="footer-placeholder"></div>
+    
+    <script src="js/jquery-latest.js"></script>
+    <script src="js/script.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="js/supabase-config.js"></script>
+    <script src="js/navigation.js"></script>
+    
+    <script>
+        // Initialize navigation and footer
+        document.addEventListener('DOMContentLoaded', () => {
+            initializeNavFooter('blog');
+            loadBlogPosts();
+        });
+        
+        // Load blog posts from Supabase
+        async function loadBlogPosts() {
+            const { data: posts, error } = await supabase
+                .from('blog_posts')
+                .select('*')
+                .eq('status', 'published')
+                .order('published_at', { ascending: false });
+            
+            const grid = document.getElementById('blog-grid');
+            
+            if (error || !posts || posts.length === 0) {
+                grid.innerHTML = `
+                    <div style="grid-column: 1 / -1; text-align: center; padding: 60px 0;">
+                        <h3 style="color: #666; margin-bottom: 20px;">Coming Soon!</h3>
+                        <p style="color: #999;">We're working on bringing you inspiring stories. Check back soon!</p>
+                    </div>
+                `;
+                return;
+            }
+            
+            grid.innerHTML = posts.map(post => {
+                const date = new Date(post.published_at).toLocaleDateString('en-US', { 
+                    month: 'short', 
+                    day: 'numeric', 
+                    year: 'numeric' 
+                });
+                const authorInitial = post.author_name ? post.author_name.charAt(0).toUpperCase() : 'M';
+                
+                return `
+                    <div class="blog-card">
+                        <div class="blog-image">
+                            <img src="${post.featured_image || 'images/blog-default.jpg'}" alt="${post.title}">
+                            <div class="blog-date">${date}</div>
+                        </div>
+                        <div class="blog-content">
+                            <div class="blog-category"># ${post.category || 'Story'}</div>
+                            <h3 class="blog-title">${post.title}</h3>
+                            <p class="blog-excerpt">${post.excerpt || post.content.substring(0, 150) + '...'}</p>
+                            <div class="blog-author">
+                                <div class="author-avatar">${authorInitial}</div>
+                                <div class="author-info">
+                                    <div class="author-name">${post.author_name || 'MpaMpe Team'}</div>
+                                    <div class="read-time">${post.read_time || 5} min read</div>
+                                </div>
+                                <a href="blog-post.html?slug=${post.slug}" class="btn-read-more">Read More</a>
+                            </div>
+                        </div>
+                    </div>
+                `;
+            }).join('');
+        }
+    </script>
+</body>
+</html>
